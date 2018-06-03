@@ -40,9 +40,9 @@ class MetaBox
         <?php
     }
 
-    public function save( $post_id ) {
+    public function save_post( $post_id ) {
         $keys = [
-            '_some_options'
+            '_some_option'
         ];
 
         foreach( $keys as $key ) {
