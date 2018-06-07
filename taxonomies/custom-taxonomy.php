@@ -11,7 +11,7 @@ class CustomTaxonomy {
         $labels = [
             'name'                       => _x( static::PLURAL, 'Taxonomy General Name', 'text_domain' ),
             'singular_name'              => _x( static::SINGULAR, 'Taxonomy Singular Name', 'text_domain' ),
-            'menu_name'                  => __( static::SINGULAR, 'text_domain' ),
+            'menu_name'                  => __( static::PLURAL, 'text_domain' ),
             'all_items'                  => __( 'All Items', 'text_domain' ),
             'parent_item'                => __( 'Parent Item', 'text_domain' ),
             'parent_item_colon'          => __( 'Parent Item:', 'text_domain' ),
@@ -53,6 +53,6 @@ class CustomTaxonomy {
     }
 
     public function register_taxonomy() {
-        register_taxonomy( static::KEY, $this->post_types );
+        register_taxonomy( static::KEY, $this->post_types, $this->get_args() );
     }
 }
