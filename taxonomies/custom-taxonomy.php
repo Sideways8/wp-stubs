@@ -8,18 +8,20 @@ class CustomTaxonomy {
     public $post_types = ['post'];
 
     public function get_labels() {
+        $singular = static::SINGULAR;
+        $plural = static::PLURAL;
         $labels = [
-            'name'                       => _x( static::PLURAL, 'Taxonomy General Name', 'text_domain' ),
-            'singular_name'              => _x( static::SINGULAR, 'Taxonomy Singular Name', 'text_domain' ),
-            'menu_name'                  => __( static::PLURAL, 'text_domain' ),
-            'all_items'                  => __( 'All Items', 'text_domain' ),
-            'parent_item'                => __( 'Parent Item', 'text_domain' ),
-            'parent_item_colon'          => __( 'Parent Item:', 'text_domain' ),
-            'new_item_name'              => __( 'New Item Name', 'text_domain' ),
-            'add_new_item'               => __( 'Add New Item', 'text_domain' ),
-            'edit_item'                  => __( 'Edit Item', 'text_domain' ),
-            'update_item'                => __( 'Update Item', 'text_domain' ),
-            'view_item'                  => __( 'View Item', 'text_domain' ),
+            'name'                       => _x( $plural, 'Taxonomy General Name', 'text_domain' ),
+            'singular_name'              => _x( $singular, 'Taxonomy Singular Name', 'text_domain' ),
+            'menu_name'                  => __( $plural, 'text_domain' ),
+            'all_items'                  => __( 'All ' . $plural, 'text_domain' ),
+            'parent_item'                => __( 'Parent ' . $singular, 'text_domain' ),
+            'parent_item_colon'          => __( 'Parent ' . $singular . ':', 'text_domain' ),
+            'new_item_name'              => __( 'New ' . $singular . ' Name', 'text_domain' ),
+            'add_new_item'               => __( 'Add New ' . $singular, 'text_domain' ),
+            'edit_item'                  => __( 'Edit ' . $singular, 'text_domain' ),
+            'update_item'                => __( 'Update ' . $singular, 'text_domain' ),
+            'view_item'                  => __( 'View ' . $singular, 'text_domain' ),
             'separate_items_with_commas' => __( 'Separate items with commas', 'text_domain' ),
             'add_or_remove_items'        => __( 'Add or remove items', 'text_domain' ),
             'choose_from_most_used'      => __( 'Choose from the most used', 'text_domain' ),
