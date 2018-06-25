@@ -85,7 +85,7 @@ class AdminSettingsPageContainer
     }
 
     public function get_url( $key = '' ) {
-        return admin_url() . 'admin.php?page=' . $this->slug . '&key=' . $key;
+        return admin_url() . 'admin.php?page=' . $this->slug . '&tab=' . $key;
     }
 
     public function render_tab_navigation() {
