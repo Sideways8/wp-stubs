@@ -26,7 +26,7 @@ abstract class AdminSettingsPageTabAbstract
         if ( $tab !== $this->key || $slug !== $this->admin_page_slug ) {
             return;
         }
-        $this->render();
+        $this->save();
     }
 
     public function _hook_settings_page_render( $tab, $slug ) {
