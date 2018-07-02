@@ -25,10 +25,7 @@ class AdminSettingsPageContainer
 
     public function __construct() {
         add_action( 'admin_menu', [$this, 'register_settings_page'] );
-
-        if ( ! empty( $_POST ) ) {
-            $this->save_tab_content();
-        }
+        add_action( 'admin_init', [$this, 'save_tab_content'] );
     }
 
     public function register_settings_page() {
@@ -106,6 +103,9 @@ class AdminSettingsPageContainer
     }
 
     public function save_tab_content() {
+        if ( empty( $_POST ) ) {
+            return;
+        }
         $slug = $this->slug;
         $tab  = $this->get_current_tab();
         do_action( 'admin_settings_page_save_tab', $tab, $slug );
