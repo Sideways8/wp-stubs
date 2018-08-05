@@ -2,7 +2,9 @@
 
 class Main_Plugin_Class
 {
-    protected function __construct() { }
+    protected function __construct() { 
+        $this->register_components();
+    }
 
     /** @var static */
     protected static $instance;
@@ -16,5 +18,6 @@ class Main_Plugin_Class
     }
 
     public function register_components() {
+        // Call component classes.
     }
 }
