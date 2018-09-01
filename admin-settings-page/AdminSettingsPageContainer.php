@@ -101,6 +101,12 @@ class AdminSettingsPageContainer
         $tab = $this->get_current_tab();
         do_action( 'admin_settings_page_render_tab', $tab, $slug );
     }
+    
+    public function render_admin_notices() {
+        $slug = $this->slug;
+        $tab  = $this->get_current_tab();
+        do_action( 'admin_settings_page_render_admin_notices', $tab, $slug );
+    }
 
     public function save_tab_content() {
         if ( empty( $_POST ) ) {
