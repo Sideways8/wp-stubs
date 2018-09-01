@@ -73,6 +73,7 @@ class AdminSettingsPageContainer
         ?>
         <div class="wrap">
             <h2><?= $this->title; ?></h2>
+            <?php $this->render_admin_notices(); ?>
             <div class="wrap">
             <?php $this->render_tab_navigation(); ?>
             <div class="wrap"><?php $this->render_tab_content(); ?></div>
