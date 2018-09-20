@@ -110,7 +110,11 @@ class AdminSettingsPageContainer
     }
 
     public function save_tab_content() {
-        if ( empty( $_POST ) ) {
+        if ( 
+            empty( $_POST ) ||
+            ! isset( $_GET['page'] ) ||
+            $this->slug != $_GET['page']
+        ) {
             return;
         }
         $slug = $this->slug;
