@@ -1,5 +1,4 @@
 <?php
-namespace PostClicks\Administration\Tabs;
 
 abstract class AdminSettingsPageTabAbstract
 {
@@ -24,34 +23,52 @@ abstract class AdminSettingsPageTabAbstract
         add_action( 'admin_settings_page_render_admin_notices', [$this, '_hook_settings_page_admin_notices'], 10, 2 );
     }
 
+    protected function _check_hook( $tab, $slug ) {
+        if (
+            $tab !== $this->key ||
+            $slug !== $this->admin_page_slug ||
+            ! isset( $_GET['page'] ) ||
+            $slug != $_GET['page']
+        ) {
+            return false;
+        }
+        return true;
+    }
+
     public function _hook_settings_page_save( $tab, $slug ) {
-        if ( $tab !== $this->key || $slug !== $this->admin_page_slug ) {
+        if ( ! $this->_check_hook( $tab, $slug ) ) {
             return;
         }
         $this->save();
     }
 
     public function _hook_settings_page_render( $tab, $slug ) {
-        if ( $tab !== $this->key || $slug !== $this->admin_page_slug ) {
+        if ( ! $this->_check_hook( $tab, $slug ) ) {
             return;
         }
         $this->render();
     }
 
     public function _hook_settings_page_admin_notices( $tab, $slug ) {
-        if ( $tab !== $this->key || $slug !== $this->admin_page_slug ) {
+        if ( ! $this->_check_hook( $tab, $slug ) ) {
             return;
         }
-        foreach( $this->notices as $notice ) {
+        foreach ( $this->notices as $notice ) {
             echo $notice;
         }
     }
 
     public function _hook_settings_page_tabs( $tabs, $slug ) {
-        if ( $slug !== $this->admin_page_slug ) {
-            return null;
+        if (
+            $slug !== $this->admin_page_slug ||
+            ! isset( $_GET['page'] ) ||
+            $slug !== $_GET['page']
+        ) {
+            return [];
         }
+
         $tabs[$this->key] = $this->label;
+
         return $tabs;
     }
 
@@ -63,9 +80,9 @@ abstract class AdminSettingsPageTabAbstract
      * @param string $type 'success', 'success', 'notice'
      */
     public function print_admin_notice( $content, $type = 'success' ) {
-        $class   = 'is-dismissible notice notice-' . $type;
-        $message = __( $content, 'post-clicks' );
-        $string = sprintf( '<div class="%1$s"><p>%2$s</p></div>', esc_attr( $class ), esc_html( $message ) );
+        $class           = 'is-dismissible notice notice-' . $type;
+        $message         = __( $content, 'post-clicks' );
+        $string          = sprintf( '<div class="%1$s"><p>%2$s</p></div>', esc_attr( $class ), esc_html( $message ) );
         $this->notices[] = $string;
     }
 }
