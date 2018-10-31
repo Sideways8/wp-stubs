@@ -5,9 +5,7 @@ abstract class AdminSettingsPageTabAbstract
     public $key = '';
 
     public $label = '';
-
-    public $admin_page_slug = '';
-
+    
     public function render() {
         echo 'Overwrite render()...';
     }
@@ -16,6 +14,9 @@ abstract class AdminSettingsPageTabAbstract
 
     ////////////////////////
 
+    /** @var string The container's admin page slug. */
+    public $admin_page_slug = '';
+    
     public function __construct() {
         add_filter( 'admin_settings_page_tabs', [$this, '_hook_settings_page_tabs'], 10, 2 );
         add_action( 'admin_settings_page_save_tab', [$this, '_hook_settings_page_save'], 10, 2 );
